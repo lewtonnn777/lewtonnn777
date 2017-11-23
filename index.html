@@ -11,7 +11,7 @@
 
 <body>
   <script src="//connect.facebook.net/en_US/all.js"></script>
-  <script>
+<script>
     window.fbAsyncInit = function() {
       FB.init({
         appId: '2392673924292017',
@@ -21,47 +21,16 @@
       });
     };
 
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
     function showHide() {
       document.querySelector('.offer').style.display = 'none';
       document.querySelector('.reward').style.display = 'block';
     };
-
-
-
-    FB.Event.subscribe('edge.create', showHide);
-  </script>
-  <div id="fb-root"></div>
-  <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.11&appId=2392673924292017';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-<!--   <div class="fb-like" data-href="https://lewtonnn777.github.io/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div> -->
-  <button class="share-button" type="button">Share</button>
-  <p>This text is visible all the time!</p>
-  <p class="offer">This text offers you something in exchange for Like!</p>
-  <p class="reward" style="display: none">And this is your Reward!!!</p>
-  <script>
-    document.querySelector('.share-button').onclick = function() {
+  
+      document.querySelector('.share-button').onclick = function() {
       FB.ui({
         method: 'feed',
         link: 'https://lewtonnn777.github.io/',
+        picture: 'https://lewtonnn777.github.io/TRUSTe.png',
         caption: 'Lewtonnn',
         })
       }, function(response) {
@@ -73,6 +42,14 @@
       });
     };
   </script>
+
+  <button class="share-button" type="button">Share</button>
+  
+  <p>This text is visible all the time!</p>
+  <p class="offer">This text offers you something in exchange for Like!</p>
+  <p class="reward" style="display: none">And this is your Reward!!!</p>
+  
+
 </body>
 
 </html>
