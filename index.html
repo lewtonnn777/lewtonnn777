@@ -32,7 +32,8 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    function showHide() {
+    function 
+    () {
       document.querySelector('.offer').style.display = 'none';
       document.querySelector('.reward').style.display = 'block';
     };
@@ -52,7 +53,7 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
-  <div class="fb-like" data-href="https://lewtonnn777.github.io/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+<!--   <div class="fb-like" data-href="https://lewtonnn777.github.io/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div> -->
   <button class="share-button" type="button">Share</button>
   <p>This text is visible all the time!</p>
   <p class="offer">This text offers you something in exchange for Like!</p>
@@ -65,13 +66,13 @@
         action_type: 'og.likes',
         caption: 'Caption',
         action_properties: JSON.stringify({
-          object: 'https://developers.facebook.com/docs/',
+          object: 'https://lewtonnn777.github.io',
         })
       }, function(response) {
         if (response === null) {
           console.log('was not shared');
         } else {
-          console.log('shared - post id is ' + response.post_id);
+         showHide();
         }
       });
     };
