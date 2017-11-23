@@ -1,90 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
+<html>
 
 <body>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+  <script src="//connect.facebook.net/en_US/all.js"></script>
   <script>
-    jQuery(document).ready(function() {
-      var ajaxurl = "#";
-      var post_id = "747";
-      jQuery.post(ajaxurl, {
-        action: "fbstats",
-        field: "visits",
-        pageid: post_id
-      }, function(response) {});
-      var sharebodybackground = "##FFFFFF";
-      jQuery(".socialConnect").css("background", "##FFFFFF");
-      jQuery(".socialConnect b").css("background", "##46B8B1");
-      jQuery(".socialConnect b").css("color", "##FFFFFF");
-      var popupStatus = 0;
-    }); //ready
-
-    function shareonfacebook() {
-      var ajaxurl = "#";
-      var post_id = "747";
-
-      jQuery.post(ajaxurl, {
-        action: "fbstats",
-        field: "clicks",
-        pageid: post_id
-      }, function(response) {});
-      // init the FB JS SDK
+    window.fbAsyncInit = function() {
       FB.init({
-        appId: "2392673924292017",
+        appId: '2392673924292017',
+        autoLogAppEvents: true,
         xfbml: true,
-        version: "v2.11"
+        version: 'v2.11'
       });
-      var product_name = "Lock premium content on your page using a Facebook ShareToUnlock button. ";
-      var description = "Show your website visitors a teaser – say, Part 1 of your cool video – and then hide Part 2 behind a Facebook Share Button. Your teaser video needs to get them hungry for more!The visitors will excitedly and voluntarily click on the Share on Facebook button to unlock the hidden content!";
-      var share_image = "http://fbsharetounlock.com/wp-content/uploads/2016/02/shareimage.jpg";
-      var share_url = "http://fbsharetounlock.com/wso";
-      var share_capt = "Go VIRAL with Facebook Shares! Get tons of FREE Traffic and Leads from Facebook- without spending a SINGLE DOLLAR on Paid Ads!";
-      var fbsharesuccessmsg = "";
-      window.d = description;
+    };
 
-      FB.ui({
-        method: "feed",
-        name: product_name,
-        link: share_url,
-        picture: share_image,
-        caption: share_capt,
-        description: decodeURIComponent(description)
-      }, function(response) {
-        if ((typeof(response) == "undefined") || (response === null)) {
-          console.log("was not shared");
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    
+    function showHide() {
+  document.querySelector('.offer').style.display ='none';
+      document.querySelector('.reward').style.display ='block';
+};
+    
+    document.querySelector('.share-button').onclick(function() {
+    FB.ui({
+        method: 'feed',
+        link: 'https://developers.facebook.com/docs/dialogs/',
+        caption: 'An example caption',
+    }, function(response){
+        if (response === null) {
+            console.log('was not shared');
         } else {
-          var ajaxurl = "#";
-          var post_id = "747";
-          jQuery.post(ajaxurl, {
-            action: "fbstats",
-            field: "shares",
-            pageid: post_id
-          }, function(response) {
-            //alert(response);
-          });
-          if (fbsharesuccessmsg != "")
-            alert(fbsharesuccessmsg);
-          var cname = "fbshare747";
-          var getdata = window.location;
-          createCookie(cname, true, 999);
-          jQuery.ajax({
-            url: getdata,
-            context: document.body,
-            cache: false
-          }).done(function(response) {
-            var response = jQuery(response).find("#fbsharetounlock").html();
-            jQuery(document).find("#fbsharetounlock").html(response);
-          });
+            console.log('shared - post id is ' + response.post_id);
         }
-      });
-    }
+    });
+});
+
+FB.Event.subscribe('edge.create', showHide);
+      
   </script>
-
-  <input type="image" onclick="shareonfacebook()" src="http://fbsharetounlock.com/wp-content/plugins//fbsharetounlock/includes/images/shareonFB.png">
-
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.11&appId=2392673924292017';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like" data-href="https://lewtonnn777.github.io/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+ <button class="share-button" type="button">Share</button>
+  <p>This text is visible all the time!</p>
+  <p class="offer">This text offers you something in exchange for Like!</p>
+  <p class="reward" style="display: none">And this is your Reward!!!</p>
 </body>
+
 </html>
