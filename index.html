@@ -60,12 +60,9 @@
   <script>
     document.querySelector('.share-button').onclick = function() {
       FB.ui({
-        method: 'share_open_graph',
-        link: '',
-        action_type: 'og.shares',
-        caption: 'Caption',
-        action_properties: JSON.stringify({
-          object: 'https://lewtonnn777.github.io',
+        method: 'feed',
+        link: 'https://lewtonnn777.github.io/',
+        caption: 'Lewtonnn',
         })
       }, function(response) {
         if (response === null) {
