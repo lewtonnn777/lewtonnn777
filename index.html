@@ -23,11 +23,12 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     
-    function yesyes() {
-  alert('YES');
+    function showHide() {
+  document.querySelector('.offer').style.display ='none';
+      document.querySelector('.reward').style.display ='block';
 };
 
-FB.Event.subscribe('edge.create', yesyes);
+FB.Event.subscribe('edge.create', showHide);
       
   </script>
   <div id="fb-root"></div>
@@ -38,18 +39,10 @@ FB.Event.subscribe('edge.create', yesyes);
   js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.11&appId=2392673924292017';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
-
-  <p>1</p> <div class="fb-like" data-layout="button_count" data-action="like" data-size="sm
-    .js" data-show-faces="true" data-share="true"></div>
-  
-  
-  <p>2</p><div class="fb-share-button" data-href="https://lewtonnn777.github.io/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flewtonnn777.github.io%2F&amp;src=sdkpreparse">Поделиться</a></div>
-
-  <p>3</p><iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Flewtonnn777.github.io%2F&layout=button_count&size=small&mobile_iframe=true&appId=2392673924292017&width=105&height=20" width="105" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-
-  
-  <p>4</p><div class="fb-like" data-href="https://lewtonnn777.github.io/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+<div class="fb-like" data-href="https://lewtonnn777.github.io/" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+  <p>This text is visible all the time!</p>
+  <p class="offer">This text offers you something шт exchange for Like!</p>
+  <p class="reward" style="display: none">And this is your Reward!!!</p>
 </body>
 
 </html>
