@@ -1,31 +1,121 @@
 <html>
-<head>
-  <title>Your Website Title</title>
-    <!-- You can use Open Graph tags to customize link previews.
-    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-  <meta property="og:url"           content="lewtonnn777.github.io" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Your Website Title" />
-  <meta property="og:description"   content="Your description" />
-  <meta property="og:image"         content="#" />
-</head>
-<body>
-
-  <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-
-  <!-- Your share button code -->
-  <div class="fb-share-button" 
-    data-href="lewtonnn777.github.io" 
-    data-layout="button_count">
-  </div>
-
-</body>
+  <body>
+    <!-- 
+    
+      This page demonstrates how to hide some content on the page until the
+      viewer clicks one of the social sharing buttons. 
+      
+      You can see a live demonstration of this technique on this blog post:
+      http://adamloving.com/internet-programming/gamify
+      
+      For reference, I got the code for the buttons from...  
+      
+      http://developers.facebook.com/docs/reference/plugins/like/
+      (note, you need to plug in your own Facebook App ID for the Like button)
+      http://twitter.com/about/resources/tweetbutton 
+      https://developer.linkedin.com/plugins/share-button
+      http://www.google.com/webmasters/+1/button/ 
+      
+    -->
+    
+    
+    <!-- Here is the content -->  
+    <p>This is the free content...</p>
+    <p class="adl-outside-gate">
+      Enjoying this so far? Please click one of the buttons below to read the rest. 
+    </p>
+    <p class="adl-inside-gate">
+      Thanks for sharing. Here is the secret stuff!
+    </p>
+    
+    <!-- Here are the sharing buttons -->
+    <table>
+      <tr>
+        <td valign="top">
+          <div id="fb-root"></div>
+          <script src="http://connect.facebook.net/en_US/all.js#appId=1234&amp;xfbml=1"></script>
+          <fb:like href="" send="true" layout="box_count" width="55" show_faces="true" font=""></fb:like>
+        </td>
+        <td valign="top">
+          <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
+          <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        </td>
+        <td valign="top">
+          <script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
+          <script type="IN/Share" data-counter="top" data-onSuccess="ADL.viralGate.afterLinkedInShare"></script>
+        </td>
+        <td valign="top">
+          <g:plusone size="tall" callback="afterPlus"></g:plusone>
+          <script type="text/javascript">
+            (function() {
+              var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+              po.src = 'https://apis.google.com/js/plusone.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+          </script>
+        </td>
+      </tr>
+    </table>
+    
+    <!-- Here is the code -->
+    <script type="text/javascript">
+      ADL = {};
+      
+      (function(namespace) {
+        
+        function ViralGate() { };
+        
+        ViralGate.prototype.setDisplay = function(className, value) {
+          var els = document.getElementsByClassName(className);          
+          for (var i = 0; i < els.length; i++) {
+            els[i].style.display = value;
+          }          
+        };
+        
+        ViralGate.prototype.lock = function() {
+          this.setDisplay('adl-outside-gate', 'block');
+          this.setDisplay('adl-inside-gate', 'none');
+        };
+        
+        ViralGate.prototype.unlock = function() {
+          this.setDisplay('adl-outside-gate', 'none');
+          this.setDisplay('adl-inside-gate', 'block');          
+        }
+        
+        ViralGate.prototype.afterLike = function(event) {
+          // event is the URL
+          ADL.viralGate.unlock();
+        };
+        
+        ViralGate.prototype.afterPlus = function(data) {
+          // data is object with { href: 'http://...', state: 'on' }    
+          if (data.state == 'on') {
+            ADL.viralGate.unlock();
+          }
+        };
+        
+        ViralGate.prototype.afterTweet = function(event) {
+          // event.type == 'tweet'
+          ADL.viralGate.unlock();
+        };
+        
+        ViralGate.prototype.afterLinkedInShare = function(url) {
+          // url is url string
+          ADL.viralGate.unlock();
+        }; 
+        
+        namespace.viralGate = new ViralGate(); 
+        
+      })(ADL);
+      
+      ADL.viralGate.lock();
+      twttr.events.bind('tweet', ADL.viralGate.afterTweet); 
+      FB.Event.subscribe('edge.create', ADL.viralGate.afterLike);
+      
+      // Google callback must be in global namespace
+      afterPlus = function(data) {
+        ADL.viralGate.afterPlus(data);
+      }
+    </script>
+  </body>
 </html>
