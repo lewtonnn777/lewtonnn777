@@ -1,4 +1,13 @@
 <html>
+<head>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="lewtonnn777">
+  <meta property="og:title" content="lewton's site">
+  <meta property="og:description" content="Cool lewtons site">
+  <meta property="og:url" content="https://lewtonnn777.github.io/">
+  <meta property="og:locale" content="en_EN">
+  <meta property="og:image" content="https://lewtonnn777.github.io/TRUSTe.png">
+</head>
 
 <body>
   <script src="//connect.facebook.net/en_US/all.js"></script>
@@ -51,9 +60,13 @@
   <script>
     document.querySelector('.share-button').onclick = function() {
       FB.ui({
-        method: 'share',
-        link: 'https://lewtonnn777.github.io/',
+        method: 'share_open_graph',
+        link: '',
+        action_type: 'og.likes',
         caption: 'Caption',
+        action_properties: JSON.stringify({
+          object: 'https://developers.facebook.com/docs/',
+        })
       }, function(response) {
         if (response === null) {
           console.log('was not shared');
