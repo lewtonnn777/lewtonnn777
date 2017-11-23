@@ -26,21 +26,22 @@
       document.querySelector('.reward').style.display = 'block';
     };
   
-      document.querySelector('.share-button').onclick = function() {
-      FB.ui({
-        method: 'feed',
-        link: 'https://lewtonnn777.github.io/',
-        picture: 'https://lewtonnn777.github.io/TRUSTe.png',
-        caption: 'Lewtonnn',
+    document.querySelector('.share-button').onclick = function() {
+        FB.ui({
+          method: 'feed',
+          link: 'https://lewtonnn777.github.io/',
+          picture: 'https://lewtonnn777.github.io/TRUSTe.png',
+          caption: 'Lewtonnn',
         })
-      }, function(response) {
+      },
+      function(response) {
         if (response === null) {
           console.log('was not shared');
         } else {
-         showHide();
+          showHide();
         }
-      });
-    };
+      };
+    });
   </script>
 
   <button class="share-button" type="button">Share</button>
