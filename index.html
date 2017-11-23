@@ -1,17 +1,22 @@
 <html>
-<head>
 
+<head>
+  <meta property="og:title" content="This is Caption" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lewtonnn777.github.io/img_img.jpg" />
+  <meta property="og:url" content="https://lewtonnn777.github.io" />
+  <meta property="og:description" content="Very Nice Site" />
 </head>
 
 <body>
-  
-    <button class="share-button" type="button">Share</button>
-  
+
+  <button class="share-button" type="button">Share</button>
+
   <p>This text is visible all the time!</p>
   <p class="offer">This text offers you something in exchange for Like!</p>
   <p class="reward" style="display: none">And this is your Reward!!!</p>
   <script src="//connect.facebook.net/en_US/all.js"></script>
-<!-- <script>
+  <script>
     window.fbAsyncInit = function() {
       FB.init({
         appId: '2392673924292017',
@@ -25,8 +30,8 @@
       document.querySelector('.offer').style.display = 'none';
       document.querySelector('.reward').style.display = 'block';
     };
-  
-    document.querySelector('.share-button').onclick = function () {
+
+    document.querySelector('.share-button').onclick = function() {
       FB.ui({
           method: 'feed',
           app_id: '2392673924292017',
@@ -34,7 +39,7 @@
           picture: 'https://lewtonnn777.github.io/TRUSTe.png',
           caption: 'Lewtonnn',
         },
-        function (response) {
+        function(response) {
           if (response === null) {
             console.log('was not shared');
           } else {
@@ -42,16 +47,27 @@
           }
         });
     };
-  </script> -->
-  
-    <a href="https://www.facebook.com/dialog/feed?
-  app_id=2392673924292017&
-  link=https://lewtonnn777.github.io/&
-  picture=http://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg&
-  name=Facebook%20Dialogs&
-  caption=Reference%20Documentation&
-  description=Using%20Dialogs%20to%20interact%20with%20users.&
-  display=popup"><button type="button">TEST</button></a>
+
+    document.querySelector('.ogp-button').onclick = function() {
+      FB.ui({
+          method: 'share_open_graph',
+          action_type: 'og.shares',
+          action_properties: JSON.stringify({
+            object: 'https://lewtonnn777.github.io/',
+          })
+        },
+        function(response) {
+          if (response === null) {
+            console.log('was not shared');
+          } else {
+            showHide();
+          }
+        });
+    };
+
+  </script>
+
+  <button class="ogp-button" type="button">TEST</button>
 
 </body>
 
