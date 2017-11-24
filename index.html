@@ -41,10 +41,10 @@
           caption: 'Lewtonnn',
         },
         function(response) {
-          if (response === null) {
-            console.log('was not shared');
-          } else {
+          if (response) {
             showHide();
+          } else {
+            console.log('was not shared');
           }
         });
     };
@@ -58,10 +58,10 @@
           })
         },
         function(response) {
-          if (response === null) {
-            console.log('was not shared');
-          } else {
+          if (response) {
             showHide();
+          } else {
+            console.log('was not shared');
           }
         });
     };
