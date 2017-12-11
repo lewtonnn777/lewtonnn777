@@ -28,19 +28,15 @@
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=2392673924292017';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
- <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
-        <div class="restaurant__booking">
-          <div class="booking__rest-form w-form">
-            <form id="wf-form-Rest-booking-form" name="wf-form-Rest-booking-form" data-name="Rest-booking-form" method="post" class="rest-form__form">
-            <label class="rest-form__label">Имя :</label><input type="text" class="rest-form__input w-input" maxlength="256" data-name="Имя" placeholder="Введите ваше имя" required=""><label for="Email-2" class="rest-form__label">Email :</label><input type="email" class="rest-form__input w-input" maxlength="256" name="Email" data-name="Email" placeholder="Введите ваш email" id="Email-2" required=""><label class="rest-form__label">Телефон :</label><input type="text" class="rest-form__input w-input" maxlength="256" data-name="Телефон" placeholder="Номер телефона в формате +7 (ХХХ) ХХХ-ХХХХ" required=""><select data-name="Зал" required="" class="rest-form__select w-select"><option value="Кафе">Кафе</option><option value="Ресторан">Ресторан</option></select><label class="rest-form__label">Количество персон :</label><input type="text" class="rest-form__input w-input" maxlength="256" data-name="Количество персон" placeholder="Количество персон" required=""><label class="rest-form__label">Дата и время :</label><input type="text" class="rest-form__input w-input" maxlength="256" data-name="Дата и время" placeholder="Введите число и время бронирования" required=""><label class="rest-form__label">Комментарий :</label><textarea maxlength="5000" placeholder="Комментарий к бронированию" data-name="Комментарий" class="w-input"></textarea>
-             <input type="submit" value="ЗАБРОНИРОВАТЬ" data-wait="Информация отправляется..." class="rest-form__submit w-button"></form>
-            <div class="success-message w-form-done">
-              <div>Спасибо! Информация о вашем бронировании получена.</div>
-            </div>
-            <div class="w-form-fail">
-              <div class="text-block">Что-то пошло не так во время отправки информации. Попробуйте еще раз!</div>
-            </div>
-          </div>
-        </div>
+
+<form>
+  <label>Имя</label>
+  <input type="text">
+  <label>Email</label>
+  <input type="text">
+  <label>Телефон</label>
+  <input type="text">
+  <input type="submit">
+</form>
 </body>
 </html>
