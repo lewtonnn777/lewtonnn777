@@ -28,6 +28,11 @@
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=2392673924292017';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+  
+FB.login(function(){
+  // Note: The call will only work if you accept the permission request
+  FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+}, {scope: 'publish_actions'});
 
 <form>
   <label>Имя</label>
