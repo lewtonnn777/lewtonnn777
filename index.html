@@ -48,9 +48,8 @@
       });
     };
 
-    function login() {
+    function fbLogin() {
       FB.getLoginStatus(function(response) {
-        // checks if user already authorized
         if (response.status === 'connected') {
           FB.api('me?fields=id,name,email', function(user) {
             if (user != null) {
@@ -61,7 +60,6 @@
           });
 
         } else {
-          // If user is not authorized call FB.login for pop up window for authorization  , scope defines list of persmission requested with user
           FB.login(function(response) {
             if (response.authResponse.accessToken) {
               FB.api('me?fields=id,name,email', function(user) {
@@ -72,16 +70,16 @@
                 }
               })
             }
-          }, {
-            scope: 'email'
-          });
+          }, {scope: 'email'});
         }
-
       });
+      console.log (ysername);
+      console.log(uid);
+      console.log(email);
     }
 
   </script>
-  <button onclick="myFacebookLogin()"> Login with Facebook </button>
+  <button onclick="fbLogin()"> Login with Facebook </button>
 
 
 <form>
