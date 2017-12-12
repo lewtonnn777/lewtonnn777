@@ -16,7 +16,7 @@
   <script type="text/javascript">
     WebFont.load({
       google: {
-        families: ["Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic", "Oswald:200,300,400,500,600,700"]
+        families: ["Open Sans:400"]
       }
     });
 
@@ -36,7 +36,7 @@
 
 <body class="body-2">
 
-<?php
+  <?php
 require "facebook.php";
 
 $facebook = new Facebook(array[
@@ -59,17 +59,18 @@ echo $user_profile[id];
     
 ?>
 
-  <button onclick="fbLogin()"> Login with Facebook </button>
+    <button onclick="fbLogin()"> Login with Facebook </button>
 
 
-<form>
-  <label>Имя</label>
-  <input type="text">
-  <label>Email</label>
-  <input type="text">
-  <label>Телефон</label>
-  <input type="text">
-  <input type="submit">
-</form>
+    <form>
+      <label>Имя</label>
+      <input type="text">
+      <label>Email</label>
+      <input type="text">
+      <label>Телефон</label>
+      <input type="text">
+      <input type="submit">
+    </form>
 </body>
+
 </html>
