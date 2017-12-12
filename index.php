@@ -36,29 +36,9 @@
 
 <body class="body-2">
 
+
   <?php
-require "facebook.php";
-
-$facebook = new Facebook(array[
-    'appId'  => '2392673924292017',
-    'secret' => '7769d387a4e40b5b62bcfe343b5a72f9',
-]);
-
-$user = $facebook->getUser();
-
-if ($user) {
-  try {
-    $user_profile = $facebook->api('/me');
-  } catch (FacebookApiException $e) {
-    $user = null;
-  }
-}
-
-echo $user_profile[name];
-echo $user_profile[id];
-    
-?>
-  <?php
+  require "facebook.php";
 $fb = new Facebook\Facebook([
   'app_id' => '2392673924292017',
   'app_secret' => '7769d387a4e40b5b62bcfe343b5a72f9',
