@@ -36,49 +36,32 @@
 
 <body class="body-2">
 
-  <div id="fb-root"></div>
-  <script src="//connect.facebook.net/en_US/all.js"></script>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: '1157873007677248',
-        autoLogAppEvents: true,
-        xfbml: true,
-        version: 'v2.11'
-      });
-    };
+<?php
+$fb = new Facebook\Facebook([
+  'app_id' => '{app-id}',
+  'app_secret' => '{app-secret}',
+  'default_graph_version' => 'v2.11',
+  ]);
 
-    function fbLogin() {
-      FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-          FB.api('me?fields=id,name,email', function(user) {
-            if (user != null) {
-              username = user.name;
-              uid = user.id;
-              email = user.email;
-            }
-          });
+try {
+  // Returns a `Facebook\FacebookResponse` object
+  $response = $fb->get('/me?fields=id,name', '{access-token}');
+} catch(Facebook\Exceptions\FacebookResponseException $e) {
+  echo 'Graph returned an error: ' . $e->getMessage();
+  exit;
+} catch(Facebook\Exceptions\FacebookSDKException $e) {
+  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  exit;
+}
 
-        } else {
-          FB.login(function(response) {
-            if (response.authResponse.accessToken) {
-              FB.api('me?fields=id,name,email', function(user) {
-                if (user != null) {
-                  username = user.name;
-                  uid = user.id;
-                  email = user.email;
-                }
-              })
-            }
-          }, {scope: 'email'});
-        }
-      });
-      console.log (username);
-      console.log(uid);
-      console.log(email);
-    }
+$user = $response->getGraphUser();
 
-  </script>
+echo 'Name: ' . $user['name'];
+// OR
+// echo 'Name: ' . $user->getName();
+    
+?>
+
   <button onclick="fbLogin()"> Login with Facebook </button>
 
 
