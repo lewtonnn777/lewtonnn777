@@ -31,20 +31,35 @@
           version: 'v2.11'
         });
       };
-      </script>
-    <script>
-      FB.getLoginStatus(function(response) {
-    if (response.status != 'connected') {
-      console.log('not connected');
-      myFacebookLogin();
-    };
-});
-      
-function myFacebookLogin() {
-  FB.login(function(){}, {scope: 'publish_actions'});
-  console.log('connected');
-}
-</script>
+    function login(){
+        FB.getLoginStatus(function(response) {
+        // checks if user already authorized
+                    if (response.status === 'connected') {
+                            FB.api('me?fields=id,name,email', function(user) {
+                                     if(user != null) {
+                                                                username  = user.name;
+                                                                uid = user.id;
+                                                                email = user.email;
+                                                            }
+                                });
+
+                    } else {
+        // If user is not authorized call FB.login for pop up window for authorization  , scope defines list of persmission requested with user
+                    FB.login(function(response) {
+                            if (response.authResponse.accessToken) {    
+                                            FB.api('me?fields=id,name,email', function(user) {
+                                                    if(user != null) {
+                                                                username  = user.name;
+                                                                uid = user.id;
+                                                                email = user.email;
+                                                            }
+                                                        }) 
+                                                    } 
+                                                }, {scope:'email'});
+                    }
+
+                });
+    }
 <button onclick="myFacebookLogin()">Login with Facebook</button>
   
 
