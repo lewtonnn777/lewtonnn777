@@ -33,15 +33,16 @@
       };
       </script>
     <script>
-FB.login(function(){
-  // Note: The call will only work if you accept the permission request
-  FB.api('/me/feed', 'post', {message: 'Hello, world!'});
-}, {scope: 'publish_actions'});
-  
-
-// Only works after `FB.init` is called
+      FB.getLoginStatus(function(response) {
+    if (response.status != 'connected') {
+      console.log('not connected');
+      myFacebookLogin();
+    };
+});
+      
 function myFacebookLogin() {
   FB.login(function(){}, {scope: 'publish_actions'});
+  console.log('connected');
 }
 </script>
 <button onclick="myFacebookLogin()">Login with Facebook</button>
