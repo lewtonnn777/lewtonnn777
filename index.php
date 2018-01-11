@@ -76,6 +76,8 @@ echo 'Name: ' . $user['name'];
       <input type="text">
       <input type="submit">
     </form>
+  
+<script src="//static-login.sendpulse.com/apps/fc3/build/loader.js" sp-form-id="db946c3ba9cfe0c815a839862dd2eddcf861a2099ee51fed640ce4010b778fed"></script>
 </body>
 
 </html>
