@@ -37,45 +37,7 @@
 <body class="body-2">
 
 
-  <?php
-  require "facebook.php";
-$fb = new Facebook\Facebook([
-  'app_id' => '2392673924292017',
-  'app_secret' => '7769d387a4e40b5b62bcfe343b5a72f9',
-  'default_graph_version' => 'v2.11',
-  ]);
 
-try {
-  // Returns a `Facebook\FacebookResponse` object
-  $response = $fb->get('/me?fields=id,name', '{access-token}');
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
-  echo 'Graph returned an error: ' . $e->getMessage();
-  exit;
-} catch(Facebook\Exceptions\FacebookSDKException $e) {
-  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-  exit;
-}
-
-$user = $response->getGraphUser();
-
-echo 'Name: ' . $user['name'];
-  echo 'Id: ' . $user['id'];
-// OR
-// echo 'Name: ' . $user->getName();
-  ?>
-    
-    <button onclick="fbLogin()"> Login with Facebook </button>
-
-
-    <form>
-      <label>Имя</label>
-      <input type="text">
-      <label>Email</label>
-      <input type="text">
-      <label>Телефон</label>
-      <input type="text">
-      <input type="submit">
-    </form>
   
 <script src="//static-login.sendpulse.com/apps/fc3/build/loader.js" sp-form-id="db946c3ba9cfe0c815a839862dd2eddcf861a2099ee51fed640ce4010b778fed"></script>
 </body>
